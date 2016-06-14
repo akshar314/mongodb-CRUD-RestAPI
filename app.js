@@ -3,7 +3,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var Book = require('./Book.model');
-var PORT = process.evn.PORT || 3000;
+var PORT = process.env.PORT || 3000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 var db = 'mongodb://localhost/example';
@@ -48,6 +48,15 @@ app.post('/books', function(request, response) {
         response.send(book);
     });
 
+
+});
+
+app.post('/books2', function(request, response) {
+    Book.create(request.body, function(err, book) {
+        if (err)
+            console.log(err);
+        response.json(book);
+    });
 
 });
 

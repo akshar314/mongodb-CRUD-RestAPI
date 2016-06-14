@@ -78,6 +78,18 @@ app.put('/book/:id', function(request, response) {
 
 });
 
+app.delete('/book/:id', function(request, response) {
+
+    Book.findOneAndRemove({ _id: request.params.id }, function(err, book) {
+        if (err)
+            console.log(err);
+
+        response.json(book);
+    });
+
+
+});
+
 
 
 app.listen(PORT, function() {

@@ -60,6 +60,24 @@ app.post('/books2', function(request, response) {
 
 });
 
+app.put('/book/:id', function(request, response) {
+
+    Book.findOneAndUpdate({
+            _id: request.params.id
+        }, {
+            $set: { title: request.body.title }
+        }, { upsert: true },
+        function(err, newBook) {
+            if (err)
+                console.log(err);
+
+            response.json(newBook);
+
+        });
+
+
+});
+
 
 
 app.listen(PORT, function() {

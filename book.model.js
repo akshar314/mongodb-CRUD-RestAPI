@@ -7,7 +7,6 @@ var BookSchema = new Schema({
     author: String,
     category: String
 
-
 });
 
 
